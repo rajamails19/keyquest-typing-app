@@ -1,0 +1,188 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg-deep: #030014;
+  --bg-mid:  #0a0530;
+  --card-bg:     rgba(255,255,255,0.055);
+  --card-border: rgba(255,255,255,0.09);
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: #030014;
+  color: white;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ── Scrollbar ────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 3px; height: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+
+/* ── Premium glass ────────────────────────────────────────── */
+.glass {
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+.glass-dark {
+  background: rgba(5,2,20,0.55);
+  backdrop-filter: blur(32px) saturate(150%);
+  -webkit-backdrop-filter: blur(32px) saturate(150%);
+  border: 1px solid rgba(255,255,255,0.07);
+}
+
+/* ── Stars background container ──────────────────────────── */
+.stars-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* ── Star particles ───────────────────────────────────────── */
+.star-particle {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle var(--duration, 3s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.06; transform: scale(0.7); }
+  50%       { opacity: 0.95; transform: scale(1.9); }
+}
+
+.star-large {
+  position: absolute;
+  background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(200,200,255,0.2) 60%, transparent 100%);
+  border-radius: 50%;
+  animation: twinkleLarge var(--duration, 5s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes twinkleLarge {
+  0%, 100% { opacity: 0.1; transform: scale(0.8); }
+  50%       { opacity: 0.6; transform: scale(1.4); }
+}
+
+/* ── Balloon float ────────────────────────────────────────── */
+@keyframes floatBalloon {
+  0%   { transform: translateY(0)     translateX(0)  rotate(-2deg); }
+  25%  { transform: translateY(-25vh) translateX(8px) rotate(2deg); }
+  50%  { transform: translateY(-50vh) translateX(-5px) rotate(-1deg); }
+  75%  { transform: translateY(-75vh) translateX(6px) rotate(2deg); }
+  100% { transform: translateY(-115vh) translateX(0)  rotate(0deg); opacity: 0; }
+}
+
+/* ── Misc animations ──────────────────────────────────────── */
+@keyframes sparkleOut {
+  0%   { transform: scale(0) rotate(0deg);  opacity: 1; }
+  100% { transform: scale(2) rotate(90deg); opacity: 0; }
+}
+
+@keyframes scrollLeft {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes keyPress {
+  0%   { transform: scale(1);    }
+  30%  { transform: scale(0.88); }
+  100% { transform: scale(1);    }
+}
+.key-pressed { animation: keyPress 0.15s ease-out; }
+
+@keyframes celebBurst {
+  0%   { transform: scale(0) rotate(-30deg); opacity: 0; }
+  60%  { transform: scale(1.15) rotate(5deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg);   opacity: 1; }
+}
+
+@keyframes floatEmoji {
+  0%   { transform: translateY(0) scale(0); opacity: 0; }
+  20%  { opacity: 1; }
+  100% { transform: translateY(-200px) scale(1.2); opacity: 0; }
+}
+
+/* ── Rainbow text ─────────────────────────────────────────── */
+.rainbow-text {
+  background: linear-gradient(135deg,#f87171,#fb923c,#fbbf24,#4ade80,#60a5fa,#a78bfa,#f472b6);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbowShift 4s ease infinite;
+}
+
+@keyframes rainbowShift {
+  0%, 100% { background-position: 0% 50%;   }
+  50%       { background-position: 100% 50%; }
+}
+
+/* ── Gold text ────────────────────────────────────────────── */
+.gold-text {
+  background: linear-gradient(135deg, #fde68a, #fbbf24, #f59e0b, #fde68a);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbowShift 3s ease infinite;
+}
+
+/* ── Glow utilities ───────────────────────────────────────── */
+.glow-violet { box-shadow: 0 0 30px rgba(124,58,237,0.55), 0 0 60px rgba(124,58,237,0.25); }
+.glow-pink   { box-shadow: 0 0 30px rgba(236,72,153,0.55), 0 0 60px rgba(236,72,153,0.25); }
+.glow-green  { box-shadow: 0 0 30px rgba(74,222,128,0.5),  0 0 60px rgba(74,222,128,0.2);  }
+.glow-blue   { box-shadow: 0 0 30px rgba(96,165,250,0.5),  0 0 60px rgba(96,165,250,0.2);  }
+.glow-yellow { box-shadow: 0 0 30px rgba(251,191,36,0.5),  0 0 60px rgba(251,191,36,0.2);  }
+
+/* ── Aurora orb drifting ──────────────────────────────────── */
+@keyframes auroraFloat {
+  0%,100% { transform: translate(0%,   0%)   scale(1.00); }
+  25%      { transform: translate(3%,   2%)   scale(1.06); }
+  50%      { transform: translate(-2%,  4%)   scale(0.96); }
+  75%      { transform: translate(1%,  -3%)   scale(1.03); }
+}
+
+@keyframes auroraFloat2 {
+  0%,100% { transform: translate(0%,   0%)   scale(1.00); }
+  33%      { transform: translate(-4%,  2%)   scale(1.08); }
+  66%      { transform: translate( 3%, -3%)   scale(0.94); }
+}
+
+@keyframes auroraFloat3 {
+  0%,100% { transform: translate(0%,   0%)   scale(1.00); }
+  40%      { transform: translate(2%,  -4%)   scale(1.05); }
+  80%      { transform: translate(-3%,  3%)   scale(0.97); }
+}
+
+/* ── Premium tab highlight shimmer ───────────────────────── */
+@keyframes shimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(200%);  }
+}
+
+.tab-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+  animation: shimmer 2.5s ease infinite;
+  border-radius: inherit;
+}
